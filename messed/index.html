@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Circle</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: darkgrey;
+    }
+    #outer-circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+    #inner-matte-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: transform 0.5s ease-out;
+      transform: scale(0);
+      position: relative;
+      z-index: 1;
+    }
+    #inner-glow {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: transparent;
+      box-shadow: 0 0 20px 5px white;
+      transition: transform 0.5s ease-out;
+      z-index: 2;
+    }
+    #moving-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: red;
+      animation: moveDot 2s linear infinite;
+      z-index: 3;
+    }
+    #black-dot {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: black;
+      animation: moveBlackDot 4s linear infinite;
+      z-index: 4; /* Ensure it's above all other elements */
+    }
+    @keyframes moveDot {
+      0% {
+        transform: translate(-50%, -50%);
+      }
+      25% {
+        transform: translate(-50%, -70%);
+      }
+      50% {
+        transform: translate(-50%, -50%);
+      }
+      75% {
+        transform: translate(-50%, -30%);
+      }
+      100% {
+        transform: translate(-50%, -50%);
+      }
+    }
+    @keyframes moveBlackDot {
+      0% {
+        transform: translate(-50%, -50%);
+      }
+      25% {
+        transform: translate(-70%, -50%);
+      }
+      50% {
+        transform: translate(-50%, -50%);
+      }
+      75% {
+        transform: translate(-30%, -50%);
+      }
+      100% {
+        transform: translate(-50%, -50%);
+      }
+    }
+    #outer-circle:hover #inner-matte-circle {
+      transform: scale(1);
+    }
+    #outer-circle:hover #inner-glow {
+      transform: scale(1);
+    }
+  </style>
+</head>
+<body>
+  <div id="outer-circle">
+    <div id="inner-matte-circle"></div>
+    <div id="inner-glow"></div>
+    <div id="moving-dot"></div>
+    <div id="black-dot"></div>
+  </div>
+</body>
+</html>
